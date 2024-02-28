@@ -8,17 +8,15 @@
 import Foundation
 
 class Clock{
-    var hours: Int = 00
-    var minutes: Int = 00
-    var seconds: Int = 00
+    var hours: Int = 0
+    var minutes: Int = 0
+    var seconds: Int = 0
     
-    
-    
-        
     
     var secondsLamp: String {
         return seconds % 2 == 0 ? "Y" : "O"
     }
+    
     var fourHoursRaw: String {
         switch hours / 5 {
         case 0: return "OOOO"
@@ -31,6 +29,7 @@ class Clock{
             return "Well how does that happen?"
         }
     }
+    
     var singleHoursRaw: String {
         switch hours % 5 {
         case 0: return "OOOO"
@@ -43,6 +42,7 @@ class Clock{
             return "Well how does that happen?"
         }
     }
+    
     var fiveMinutesRaw: String {
         switch minutes / 5 {
         case 0: return "OOOOOOOOOOO"
@@ -62,6 +62,7 @@ class Clock{
             return "Well how does that happen?"
         }
     }
+    
     var singleMinutesRaw: String {
         switch minutes % 5 {
         case 0: return "OOOO"
@@ -75,8 +76,7 @@ class Clock{
         }
     }
     
-    
-    func convertTimeToBerlin(time: String) -> String{
+    func convertTimeToBerlin(time: String) -> String {
         var modifiedTime = time
             
             let components = modifiedTime.components(separatedBy: ".")
@@ -128,14 +128,8 @@ class Clock{
 
 let myClock = Clock()
 print("Enter time in 00.00.00 format")
-print (myClock.convertTimeToBerlin(time: readLine() ?? "00.00.00")
+print (myClock.convertTimeToBerlin(time: readLine() ?? "00.00.00"))
 
 
-//top lamp: even second - on, odd second off
-//second raw: 4 lamps 5 hour each
-//third raw: 4 lamps 1 hour each
-//fourth raw: 11 lamps 5 each
-//last raw: 4 lamps 1 minute each
 
 
-)
