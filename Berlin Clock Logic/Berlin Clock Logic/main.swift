@@ -130,6 +130,9 @@ let myClock = Clock()
 print("Enter time in 00.00.00 format")
 print (myClock.convertTimeToBerlin(time: readLine() ?? "00.00.00"))
 
+// Нуу вот так как то
+// Я пытался красиво но под конец малек запутался намудрил...
+// Но зато работает
 
 
 
