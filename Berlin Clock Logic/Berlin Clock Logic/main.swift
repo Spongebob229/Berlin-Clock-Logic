@@ -76,50 +76,39 @@ class Clock{
         }
     }
     
+    func toInt(component: String) -> Int{
+        var string = component
+        if (string.first == "0"){
+            let i = string.index(string.startIndex, offsetBy: 0)
+            let removed_String = String(string.remove(at: i))
+            return Int(removed_String) ?? -1
+        }
+        
+        return Int(string) ?? -1
+    }
+    
     func convertTimeToBerlin(time: String) -> String {
-        var modifiedTime = time
-            
-            let components = modifiedTime.components(separatedBy: ".")
+        
+        let components = time.components(separatedBy: ".")
+        
         if components.count != 3 {
             return "Invalid value format"
         }
         
-           var firstZero = false
-           var secondZero = false
-            
-            if components[0].first == "0" {
-                modifiedTime.remove(at: modifiedTime.startIndex)
-                firstZero = true
-            }
+        seconds = toInt(component: components[2])
+        minutes = toInt(component: components[1])
+        hours = toInt(component: components[0])
         
-            if components[1].first == "0" {
-                if(firstZero){
-                    modifiedTime.remove(at: modifiedTime.index(modifiedTime.startIndex, offsetBy: 2))
-                }
-                else{
-                    modifiedTime.remove(at: modifiedTime.index(modifiedTime.startIndex, offsetBy: 3))
-                }
-                secondZero = true
-            }
+        if seconds > 59 || seconds < 0{
+            return "Invalid value format"
+        }
+        if minutes > 59 || seconds < 0{
+            return "Invalid value format"
+        }
+        if hours > 23 || seconds < 0{
+            return "Invalid value format"
+        }
         
-            if components[2].first == "0" {
-                if(firstZero == true && secondZero == true){
-                    modifiedTime.remove(at: modifiedTime.index(modifiedTime.startIndex, offsetBy: 4))
-                }
-                if(firstZero == true || secondZero == true){
-                    modifiedTime.remove(at: modifiedTime.index(modifiedTime.startIndex, offsetBy: 5))
-                }
-                else{
-                    modifiedTime.remove(at: modifiedTime.index(modifiedTime.startIndex, offsetBy: 6))
-                }
-            }
-            
-            guard let hours = Int(components[0]),
-                  let minutes = Int(components[1]),
-                  let seconds = Int(components[2]) else {
-                print("Invalid value format")
-                return ""
-            }
     
         return ("\(secondsLamp)\(fourHoursRaw)\(singleHoursRaw)\(fiveMinutesRaw)\(singleMinutesRaw)")
     }
@@ -130,6 +119,9 @@ let myClock = Clock()
 print("Enter time in 00.00.00 format")
 print (myClock.convertTimeToBerlin(time: readLine() ?? "00.00.00"))
 
+// Нуу вот так как то
+// Я пытался красиво но под конец малек запутался намудрил...
+// Но зато работает
 
 
 
